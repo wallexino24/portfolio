@@ -207,14 +207,14 @@ body {
 ================================= */
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: block;
   gap: 30px;
 }
 
 .project-card {
   background: white;
   border-radius: 15px;
+  margin: 30px;
   overflow: hidden;
   box-shadow: var(--soft-shadow);
   transition: 0.3s ease;
@@ -255,6 +255,109 @@ body {
   margin-bottom: 15px;
 }
 
+button {
+  background: black;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 10px 8px;
+  margin: 8ox;
+  text-align: center;
+  border: 1px solid blueviolet;
+  height: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1.2);
+}
+
+button:hover {
+  opacity: 0.8;
+  transform: translateY(5px);
+}
+
+.submit-btn {
+  width: 90%;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.9);
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  opacity: 1;
+  transform: scale(1.07);
+}
+
+.open-modal {
+  background: black;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+
+.open-modal:hover {
+  opacity: 0.8;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  transform: translateY(5px);
+}
+
+
+.modal-overlay {
+  display: flex;
+  position: fixed;
+
+  opacity: 0;
+  inset: 0;
+
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.6); /* Light white tint */
+
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  transform: scale(0.2);
+  transition: all 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  transform: scale(1.0);
+  pointer-events: auto;
+}
+
+.modal {
+  background: white;
+  display: block;
+  border-radius: 20px;
+  max-width: 800px;
+  max-height: 700px;
+  color: black;
+  padding: 20px;
+  transform: scale(0.3);
+  text-align: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1.6);
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1);
+}
+
+.close-modal {
+  display: flex;
+  margin: 10px;
+  top: 100%;
+  color: black;
+  font-size: 30px;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
 
 /* ===============================
    CONTACT
@@ -262,7 +365,58 @@ body {
 
 .contact-section {
   text-align: center;
+
 }
+
+.contact-form {
+    padding: 20px 15px;
+    margin: 10px;
+    display: block;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+  }
+
+  .contact-form h3 {
+    font-size: 25px;
+  }
+
+  input {
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+
+  input.error {
+    border: 1px solid red;
+    border-radius: 10px;
+  }
+
+  input.success {
+    border: 1px solid green;
+    border-radius: 10px;
+  }
+
+  .msg {
+    height: 100px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+  }
+
+  .message {
+    margin: 10px;
+    font-size: 14px;
+    color: green;
+  }
 
 .contact-section p {
   margin-bottom: 25px;
@@ -287,6 +441,15 @@ body {
 ================================= */
 
 @media (max-width: 900px) {
+
+  .logo {
+    width: 300px;
+  }
+
+  .nav {
+    text-align: right;
+  }
+
   .hero {
     flex-direction: column;
     text-align: center;
@@ -301,6 +464,7 @@ body {
 /* ======= mobile view ======== */
 
 @media (max-width: 900px) {
+
   .project-card img {
     width: 100%;
     height: auto;
@@ -317,6 +481,66 @@ body {
     width: 100%;
     text-align: center;
   }
+
+  .close-modal {
+    margin: 0;
+    top: 100%;
+  }
+
+  .modal {
+    max-width: 300px;
+    max-height: 400px;
+  }
+
+  .contact-form {
+    padding: 20px 15px;
+    margin: 5px;
+    top: 90%;
+    display: block;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+  }
+
+  .contact-form h3 {
+    font-size: 20px;
+  }
+
+  input {
+    width: 200px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 7px;
+  }
+
+  input.error {
+    border: 1px solid red;
+    border-radius: 10px;
+  }
+
+  input.success {
+    border: 1px solid green;
+    border-radius: 10px;
+  }
+
+  .msg {
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+  }
+
+.contact-section p {
+  margin-bottom: 15px;
+}
+
 }
 
 /* ===============================
