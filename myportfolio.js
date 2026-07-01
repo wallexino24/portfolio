@@ -20,6 +20,51 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 
+// ================= PROJECT SLIDERS =================
+
+document.querySelectorAll('.project-slider').forEach(slider => {
+  const track  = slider.querySelector('.slider-track');
+  const slides = slider.querySelectorAll('.slide');
+  const dots   = slider.querySelectorAll('.dot');
+  const leftBtn  = slider.querySelector('.slider-arrow.left');
+  const rightBtn = slider.querySelector('.slider-arrow.right');
+  let current = 0;
+
+  function goTo(index) {
+  current = index;
+  track.style.transform = `translateX(-${current * 100}%)`;
+
+  // Update dots
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+  // Show/hide arrows
+  leftBtn.classList.toggle('hidden', current === 0);
+  rightBtn.classList.toggle('hidden', current === slides.length - 1);
+
+  // Toggle mobile-view class on the slider based on which slide is active
+  // Assumes slide 0 = desktop, slide 1 = mobile
+  slider.classList.toggle('mobile-view', current === 1);
+}
+
+  // Init — hide left arrow on load since we start at slide 0
+  goTo(0);
+
+  leftBtn.addEventListener('click',  () => { if (current > 0) goTo(current - 1); });
+  rightBtn.addEventListener('click', () => { if (current < slides.length - 1) goTo(current + 1); });
+
+  // Optional: swipe support for mobile
+  let startX = 0;
+  slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  slider.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (diff > 50 && current < slides.length - 1) goTo(current + 1);
+    if (diff < -50 && current > 0) goTo(current - 1);
+  });
+});
+
+
+// ====== CONTACT PAGE ===== // 
+
 const openBtn = document.querySelector(".open-modal");
 const closeBtn = document.querySelector(".close-modal");
 const overlay = document.querySelector(".modal-overlay");
