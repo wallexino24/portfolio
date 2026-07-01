@@ -1,5 +1,5 @@
 /* ===============================
-   GLOBAL STYLES
+   COLOR DECLARATION FIRST
 ================================= */
 
 :root {
@@ -213,6 +213,7 @@ body {
 
 .project-card {
   background: white;
+  padding: 20px;
   border-radius: 15px;
   margin: 30px;
   overflow: hidden;
@@ -246,6 +247,134 @@ body {
   font-weight: bold;
 }
 
+
+/* ===============================
+   PROJECT SLIDER
+================================= */
+.project-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+.slide img {
+  height: 380px;
+  object-fit: contain;
+  background: #f0f0f0;
+  border-radius: 0;
+  transition: height 0.45s ease;
+}
+
+/* Mobile slide — taller and narrower to match portrait screenshot */
+.project-slider.mobile-view .slide img {
+  height: 520px;
+  object-fit: contain;
+  background: #f0f0f0;
+}
+
+.slide-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+}
+.slider-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.slider-arrow.left  { left: 12px; }
+.slider-arrow.right { right: 12px; }
+
+/* Hide left arrow on first slide, right arrow on last slide */
+.slider-arrow.hidden { opacity: 0; pointer-events: none; }
+
+/* Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  transition: background 0.25s;
+}
+.dot.active { background: #fff; }
+
+
+/* ======== TOOLS USED SECTION ===== */
+
+
+.project, .project-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 20%;
+  padding: 20px;
+  align-items: start;
+}
+
+.project {
+  border-bottom: 2px solid var(--text-dark);
+}
+
+.project-content {
+  border-bottom: 1px solid var(--text-dark);
+  transition: all 0.4s ease;
+}
+
+.project-content:hover {
+  background: seashell;
+  transform: translateY(3px);
+}
+
+.project h3 {
+  font-size: 20px;
+}
+
+.project-content a {
+  text-decoration: none;
+}
 
 /* ===============================
    WHY LIST
@@ -465,15 +594,17 @@ button:hover {
 
 @media (max-width: 900px) {
 
-  .project-card img {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
+  .nav {
+    font-size: 14px;
   }
 
   .hero-buttons {
     justify-content: center;
     width: 100%;
+  }
+
+  .project-content {
+    font-size: 14px;
   }
 
   .btn-primary,
