@@ -1,5 +1,5 @@
 /* ===============================
-   COLOR DECLARATION FIRST
+   GLOBAL STYLES
 ================================= */
 
 :root {
@@ -40,7 +40,7 @@ body {
   box-shadow: var(--soft-shadow);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 900;
 }
 
 .logo {
@@ -390,7 +390,7 @@ button {
   font-size: 15px;
   border-radius: 10px;
   padding: 10px 8px;
-  margin: 8ox;
+  margin: 8px;
   text-align: center;
   border: 1px solid blueviolet;
   height: 30px;
@@ -400,6 +400,28 @@ button {
 button:hover {
   opacity: 0.8;
   transform: translateY(5px);
+}
+
+
+.btn-project {
+  background: none;
+  color: var(--text-dark);
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 10px 8px;
+  margin: 8px;
+  text-align: center;
+  border: 1px solid black;
+  height: 40px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.btn-project:hover {
+  background: var(--text-dark);
+  color: var(--bg-cream);
+  transform: translateY(5px);
+  box-shadow: none;
 }
 
 .submit-btn {
@@ -551,6 +573,102 @@ button:hover {
   margin-bottom: 25px;
 }
 
+.btn-link {
+  color: var(--text-dark);
+  text-decoration: underline;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+  opacity: 0.5;
+  text-decoration: overline;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+}
+
+
+/* ============================================================
+   LIGHTBOX
+============================================================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.93);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-img-wrap {
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-img-wrap img {
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+}
+
+/* Close button */
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 201;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+/* Navigation arrows */
+.lightbox-arrow {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.lightbox-arrow:hover   { background: rgba(255,255,255,0.2); }
+.lightbox-arrow.hidden  { opacity: 0; pointer-events: none; }
 
 /* ===============================
    FOOTER
@@ -671,6 +789,18 @@ button:hover {
 .contact-section p {
   margin-bottom: 15px;
 }
+
+/* Arrows */
+.slider-arrow {
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  z-index: 1500;
+}
+
+
+.slider-arrow.left  { left: 25px; }
+.slider-arrow.right { right: 25px; }
 
 }
 
